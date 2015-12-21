@@ -71,6 +71,7 @@ var inline_src = (<><![CDATA[
             GM_setClipboard(e.target.value);
             let p = document.createElement('p');
             p.style.color = 'red';
+            p.innerHTML = 'copy!';
             this.btnsBlock.appendChild(p);
         }
     }
