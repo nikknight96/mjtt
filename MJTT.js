@@ -7,6 +7,7 @@
 // @require      https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.6.15/browser-polyfill.min.js
 // @require      https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.6.15/browser.min.js
 // @match        http://www.meijutt.com/content/*
+// @grant        GM_setClipboard
 // ==/UserScript==
 
 /* jshint ignore:start */
