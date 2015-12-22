@@ -61,7 +61,7 @@ var inline_src = (<><![CDATA[
             for (let i = 0; i < this.nodes.length; i++) {
                 let btnObj = this.nodes[i];
                 let btn = document.createElement('button');
-                btn.innerHTML = btnObj.firstLineDesc + '(一共' + btnObj.downloadLinks + '集)';
+                btn.innerHTML = btnObj.firstLineDesc + '(一共' + btnObj.downloadLinks.length + '集)';
                 btn.value = btnObj.downloadLinks.join('\n');
                 btn.addEventListener('click',this.handleClick);
                 btn.style.cssText = btnStyle;
