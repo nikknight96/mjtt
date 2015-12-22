@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name         美剧天堂：一键复制所有下载链接
 // @namespace    https://github.com/patsoncy/mjtt
-// @version      0.1.1
-// @description  在剧集页面右边增加一排按钮，点击按钮可以复制改版本的所有下载链接
+// @version      0.1.2
+// @description  在剧集页面右边增加一排按钮，点击按钮可以复制对应块下所有的下载链接
 // @author       patsoncy
 // @require      https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.6.15/browser-polyfill.min.js
 // @require      https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.6.15/browser.min.js
@@ -16,7 +16,7 @@ var inline_src = (<><![CDATA[
     /* jshint esnext:true */
 
     const downloadBlockSelector = 'div.o_list_cn_r',
-    	  checkboxSelector      = 'input[type=checkbox]',
+    	  checkboxSelector      = 'li input[type=checkbox]',
           btnsBlockStyle        = 'width:200px;position:fixed;right:0;top:40%;z-index:999',
           btnStyle              = 'display:block;width:100%;padding:20px;color:#f34d41;background:#efefef';
 
@@ -61,7 +61,7 @@ var inline_src = (<><![CDATA[
             for (let i = 0; i < this.nodes.length; i++) {
                 let btnObj = this.nodes[i];
                 let btn = document.createElement('button');
-                btn.innerHTML = btnObj.firstLineDesc + '(一共' + btnObj.downloadLinks.length + '集)';
+                btn.innerHTML = '点击复制"'+btnObj.firstLineDesc + '"部分(一共' + btnObj.downloadLinks.length + '集)';
                 btn.value = btnObj.downloadLinks.join('\n');
                 btn.addEventListener('click',this.handleClick);
                 btn.style.cssText = btnStyle;
