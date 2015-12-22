@@ -28,7 +28,7 @@ var inline_src = (<><![CDATA[
     	init(){
     		let self = this,
     		    downloadBlocks = [].slice.apply(document.querySelectorAll(downloadBlockSelector))
-                                  .filter((block) => block.querySelectorAll('input[type=checkbox]').length > 0);
+                                  .filter((block) => block.querySelectorAll(checkboxSelector).length > 0);
 
     		self.nodes = downloadBlocks.map((block,index) => {
                 let checkboxs = [].slice.apply(block.querySelectorAll(checkboxSelector));
