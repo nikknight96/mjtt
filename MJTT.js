@@ -16,7 +16,9 @@ var inline_src = (<><![CDATA[
     /* jshint esnext:true */
 
     const downloadBlockSelector = 'div.o_list_cn_r',
-    	  checkboxSelector      = 'input[type=checkbox]';
+    	  checkboxSelector      = 'input[type=checkbox]',
+          btnsBlockStyle        = 'width:200px;position:fixed;right:0;top:40%;z-index:999',
+          btnStyle              = 'display:block;width:100%;padding:20px;color:#f34d41;background:#efefef';
 
     class MJTT {
     	constructor(){
@@ -25,12 +27,13 @@ var inline_src = (<><![CDATA[
 
     	init(){
     		let self = this,
-    		    downloadBlock = [].slice.apply(document.querySelectorAll(downloadBlockSelector));
+    		    downloadBlocks = [].slice.apply(document.querySelectorAll(downloadBlockSelector))
+                                  .filter((block) => block.querySelectorAll('input[type=checkbox]').length > 0);
 
-    		self.nodes = downloadBlock.map((block,index) => {
+    		self.nodes = downloadBlocks.map((block,index) => {
                 let checkboxs = [].slice.apply(block.querySelectorAll(checkboxSelector));
     			return {
-                    firstLineDesc : block.querySelector(`#s${index}p0`).innerHTML,
+                    firstLineDesc : block.innerText.split('\n')[0],
                     downloadLinks : self.uniq(checkboxs.map((checkbox) => checkbox.value))
                 }
     		})
@@ -54,25 +57,25 @@ var inline_src = (<><![CDATA[
             let body = document.body,
                 firstNode = body.children[0],
                 btnsBlock = document.createElement('div');
-
+                btnsBlock.style.cssText = btnsBlockStyle;
             for (let i = 0; i < this.nodes.length; i++) {
                 let btnObj = this.nodes[i];
                 let btn = document.createElement('button');
                 btn.innerHTML = btnObj.firstLineDesc;
                 btn.value = btnObj.downloadLinks.join('\n');
-                btn.addEventListener('click',handleClick);
+                btn.addEventListener('click',this.handleClick);
+                btn.style.cssText = btnStyle;
                 btnsBlock.appendChild(btn);
             };
             body.insertBefore(btnsBlock,firstNode);
-            this.btnsBlock = btnsBlock;
     	}
 
         handleClick(e){
             GM_setClipboard(e.target.value);
             let p = document.createElement('p');
             p.style.color = 'red';
-            p.innerHTML = 'copy!';
-            this.btnsBlock.appendChild(p);
+            p.innerHTML = 'copied!';
+            e.target.parentNode.appendChild(p);
         }
     }
 
@@ -80,6 +83,6 @@ var inline_src = (<><![CDATA[
 
     /* jshint ignore:start */
 ]]></>).toString();
-                  var c = babel.transform(inline_src);
+var c = babel.transform(inline_src);
 eval(c.code);
 /* jshint ignore:end */
