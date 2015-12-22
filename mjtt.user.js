@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name         美剧天堂：一键复制所有下载链接
 // @namespace    https://github.com/patsoncy/mjtt
-// @version      0.1.0
-// @description  shows how to use babel compiler
+// @version      0.1.1
+// @description  在剧集页面右边增加一排按钮，点击按钮可以复制改版本的所有下载链接
 // @author       patsoncy
 // @require      https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.6.15/browser-polyfill.min.js
 // @require      https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.6.15/browser.min.js
